@@ -15,7 +15,7 @@ namespace PostgreSqlServer
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
-            builder.Services.AddSingleton<MyDatabase>();
+            builder.Services.AddScoped<MyDatabase>();
             
             var app = builder.Build();
 
@@ -31,6 +31,14 @@ namespace PostgreSqlServer
 
 
             app.MapControllers();
+
+            // asegurar que esta creada la base de datos
+            using (IServiceScope scope = app.Services.CreateScope())
+            {
+                MyDatabase database = scope.ServiceProvider.GetRequiredService<MyDatabase>();
+                database.Database.EnsureCreated();
+            }
+
 
             app.Run();
         }

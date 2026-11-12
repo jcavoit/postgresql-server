@@ -1,4 +1,4 @@
-﻿namespace PostgreSqlServer.Database
+﻿namespace PostgreSqlServer.Database.Entities
 {
     public class Car
     {

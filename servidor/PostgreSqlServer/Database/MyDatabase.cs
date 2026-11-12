@@ -1,22 +1,20 @@
-﻿namespace PostgreSqlServer.Database
+﻿using Microsoft.EntityFrameworkCore;
+using PostgreSqlServer.Database.Entities;
+
+namespace PostgreSqlServer.Database
 {
-    public class MyDatabase
+    public class MyDatabase : DbContext
     {
-        private List<Car> cars;
+        private const string DATABASE_FILENAME = "coches.db";
+        public DbSet<Car> Cars { get; set; }
 
-        public MyDatabase()
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+
         {
-            cars = new List<Car>();
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            options.UseSqlite($"DataSource={baseDir}{DATABASE_FILENAME}");
+
         }
 
-        public IEnumerable<Car> GetAll()
-        {
-            return cars;
-        }
-
-        public void Add(Car newcar)
-        {
-            cars.Add(newcar);
-        }
     }
 }
