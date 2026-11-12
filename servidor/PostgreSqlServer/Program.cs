@@ -1,4 +1,6 @@
 
+using PostgreSqlServer.Database;
+
 namespace PostgreSqlServer
 {
     public class Program
@@ -13,6 +15,8 @@ namespace PostgreSqlServer
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
+            builder.Services.AddSingleton<MyDatabase>();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
