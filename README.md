@@ -63,15 +63,6 @@ Example request body for `POST /api/cars`:
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
 
-### Run locally
-
-```bash
-git clone https://github.com/jcavoit/postgresql-server.git
-cd postgresql-server/servidor/PostgreSqlServer
-dotnet run
-```
-
-On first start, the SQLite database file `coches.db` is created next to the application binaries. You can test the endpoints with the included `PostgreSqlServer.http` file in Visual Studio or VS Code.
 
 ## Roadmap
 
